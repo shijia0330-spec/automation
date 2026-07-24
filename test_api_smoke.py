@@ -1,4 +1,8 @@
-from api_client.todos_client import get_todos, get_invalid_todos_endpoint
+from api_client.todos_client import (
+    get_todos,
+    get_invalid_todos_endpoint,
+    get_todo_by_id,
+)
 import pytest
 
 
@@ -14,6 +18,7 @@ def test_get_todos_response_shape():
 
     assert isinstance(data, list)
     assert len(data) > 0
+    
 
     first = data[0]
     assert "id" in first
@@ -33,3 +38,24 @@ def test_completed_todos_exist():
 def test_invalid_endpoint_returns_404():
     response = get_invalid_todos_endpoint()
     assert response.status_code == 404
+
+
+
+@pytest.mark.negative
+@pytest.mark.parametrize("todo_id", [-1, 0, 999999])
+def test_invalid_todo_id_returns_404_and_empty_object(todo_id):
+    response = get_todo_by_id(todo_id)
+    assert response.status_code == 404
+    assert response.json() == {}
+
+@pytest.mark.smoke
+@pytest.mark.parametrize("todo_id", [1])
+def test_valid_todo_id_returns_200_and_todo_object(todo_id):
+    response = get_todo_by_id(todo_id)
+    data = response.json()
+    assert response.status_code == 200
+    assert isinstance(data, dict)
+    assert data["id"] == todo_id
+    assert "userId" in data
+    assert "title" in data
+    assert "completed" in data

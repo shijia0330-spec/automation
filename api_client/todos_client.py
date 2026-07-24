@@ -9,3 +9,7 @@ def get_todos():
 
 def get_invalid_todos_endpoint():
     return requests.get(f"{BASE_URL}/invalid-todos-endpoint")
+
+
+def get_todo_by_id(todo_id):
+    return requests.get(f"{BASE_URL}/todos/{todo_id}")
