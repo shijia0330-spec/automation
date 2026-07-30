@@ -1,0 +1,55 @@
+import pytest
+
+from utils.api_client import get_posts, assert_ok_list
+
+
+@pytest.mark.smoke
+def test_api_query_string_title_like():
+    keyword = "eum"
+    response = get_posts({"title_like": keyword})
+    data = assert_ok_list(response)
+
+    assert len(data) > 0
+    assert all(keyword.lower() in item["title"].lower() for item in data)
+
+
+@pytest.mark.smoke
+@pytest.mark.parametrize(
+    "user_id, should_be_empty",
+    [
+        (1, False),
+        (2, False),
+        (9999, True),
+    ],
+)
+def test_api_query_filter_user_id_parametrize(user_id, should_be_empty):
+    response = get_posts({"userId": user_id})
+
+    data = assert_ok_list(response)
+
+    if should_be_empty:
+        assert len(data) == 0
+    else:
+        assert len(data) > 0
+        assert all(item["userId"] == user_id for item in data)
+
+
+@pytest.mark.smoke
+def test_api_query_string_title_like_returns_empty_for_random_keyword():
+    keyword = "zzzznotfound"
+    response = get_posts({"title_like": keyword})
+    data = assert_ok_list(response)
+
+    assert len(data) == 0  # random keyword should return no matches
+
+@pytest.mark.negative
+def test_api_query_filter_user_id_invalid_value():
+    response = get_posts({"userId":"abc"})  
+    data = assert_ok_list(response) # assert the response is a list
+    assert len(data) == 0 # assert the length of the data is 0
+
+@pytest.mark.negative
+def test_api_query_filter_title_like_invalid_value():
+    response = get_posts({"title_like":"no_match_20260730_xyz123"})  
+    data = assert_ok_list(response) # assert the response is a list
+    assert len(data) == 0 # assert the length of the data is 0

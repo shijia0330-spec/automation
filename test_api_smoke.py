@@ -1,9 +1,12 @@
+import pytest
+
 from api_client.todos_client import (
-    get_todos,
     get_invalid_todos_endpoint,
     get_todo_by_id,
+    get_todos,
+
 )
-import pytest
+from utils.api_client import assert_ok_dict, assert_ok_list, assert_todo_keys
 
 
 @pytest.mark.smoke
@@ -11,28 +14,38 @@ def test_get_todos_status_code():
     response = get_todos()
     assert response.status_code == 200
 
+
 @pytest.mark.smoke
 def test_get_todos_response_shape():
     response = get_todos()
-    data = response.json()
+    data = assert_ok_list(response)
 
-    assert isinstance(data, list)
-    assert len(data) > 0
-    
-
+    assert len(data) > 0 # length of the list is greater than 0
     first = data[0]
-    assert "id" in first
-    assert "userId" in first
-    assert "title" in first
-    assert "completed" in first
+    assert "id" in first # first item has an id key
+    assert "userId" in first # first item has a userId key
+    assert "title" in first # first item has a title key
+    assert "completed" in first # first item has a completed key
+
+
+@pytest.mark.smoke
+def test_first_3_todos_have_required_keys():
+    response = get_todos({"_limit": 3})
+    data = assert_ok_list(response)
+    assert len(data) == 3
+    for item in data:
+        assert_todo_keys(item) # each item has the required keys
+
 
 @pytest.mark.smoke
 def test_completed_todos_exist():
     response = get_todos()
-    todos = response.json()
+    todos = assert_ok_list(response)
+
     completed_count = len([todo for todo in todos if todo["completed"] is True])
     assert completed_count > 0
     assert completed_count <= len(todos)
+
 
 @pytest.mark.negative
 def test_invalid_endpoint_returns_404():
@@ -40,21 +53,20 @@ def test_invalid_endpoint_returns_404():
     assert response.status_code == 404
 
 
-
 @pytest.mark.negative
-@pytest.mark.parametrize("todo_id", [-1, 0, 999999])
+@pytest.mark.parametrize("todo_id", [-1, 0, 999999, "abc"])
 def test_invalid_todo_id_returns_404_and_empty_object(todo_id):
     response = get_todo_by_id(todo_id)
     assert response.status_code == 404
     assert response.json() == {}
+   
+
 
 @pytest.mark.smoke
-@pytest.mark.parametrize("todo_id", [1])
+@pytest.mark.parametrize("todo_id", [1, 2, 3])
 def test_valid_todo_id_returns_200_and_todo_object(todo_id):
     response = get_todo_by_id(todo_id)
-    data = response.json()
-    assert response.status_code == 200
-    assert isinstance(data, dict)
+    data = assert_ok_dict(response)
     assert data["id"] == todo_id
     assert "userId" in data
     assert "title" in data

@@ -1,29 +1,42 @@
-name: API Tests
-
-on:
+on: # on push or pull request, run the tests
   push:
+    paths:
+      - "test_api_*.py" # test files
+      - "api_client/**/*.py" # api client files
+      - "utils/**/*.py" # utility files
+      - ".github/workflows/api-tests.yml" # workflow file
   pull_request:
+    paths:
+      - "test_api_*.py" # test files
+      - "api_client/**/*.py" # api client files
+      - "utils/**/*.py" # utility files
+      - ".github/workflows/api-tests.yml" # workflow file
+
+name: API Tests # name of the workflow
 
 jobs:
-  run-api-tests:
-    runs-on: ubuntu-latest
+  run-api-tests: # name of the job
+    runs-on: ubuntu-latest # runs on ubuntu latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout code # checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Setup Python # setup python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.13" # python version
 
-      - name: Install dependencies
+      - name: Install dependencies # install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest requests
+          pip install pytest requests # install pytest and requests
 
       - name: Run smoke tests
-        run: pytest -m smoke test_api_smoke.py
+        run: pytest -m smoke -q test_api_*.py # run smoke tests using pytest with the smoke marker and quiet mode
 
       - name: Run negative tests
-        run: pytest -m negative test_api_smoke.py
+        run: pytest -m negative -q test_api_*.py # run negative tests using pytest with the negative marker and quiet mode
+
+      - name: Run regression tests
+        run: pytest -q test_api_*.py # run regression tests using pytest with quiet mode
