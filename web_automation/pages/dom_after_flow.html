@@ -1,0 +1,634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>读书屋_原创小说网站</title>
+    <link rel="stylesheet" href="/css/base.css?v=1">
+    <meta name="keywords" content="读书屋,小说,小说CMS,原创文学系统,开源小说系统,免费小说建站程序"><meta name="description" content="读书屋是一个多端（PC、WAP）阅读、功能完善的原创文学CMS系统，由前台门户系统、作家后台管理系统、平台后台管理系统、爬虫管理系统等多个子系统构成，支持会员充值、订阅模式、新闻发布和实时统计报表等功能，新书自动入库，老书自动更新。">
+    <link href="favicon.ico" type="image/x-icon" rel="shortcut icon"><link href="favicon.ico" type="image/x-icon" rel="Bookmark"><link rel="stylesheet" href="/css/main.css">
+    
+    <script src="https://hm.baidu.com/hm.js?ecc8b50a3122e6d5e09be7a9e5383e07"></script><script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?ecc8b50a3122e6d5e09be7a9e5383e07";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link id="layuicss-laydate" rel="stylesheet" href="http://novel.hctestedu.com/layui/css/modules/laydate/default/laydate.css?v=5.0.9" media="all"><link id="layuicss-layer" rel="stylesheet" href="http://novel.hctestedu.com/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all"><link id="layuicss-skincodecss" rel="stylesheet" href="http://novel.hctestedu.com/layui/css/modules/code.css" media="all"></head>
+<body>
+
+
+<div class="header">
+    <div class="topBar" style="display: none">
+        <div class="box_center cf">
+            <div class="top_l">
+                <a href="/" class="on">读书屋</a><i class="line">|</i><a href="/?m=2">手机女生版</a><i class="line">|</i><a href="/?m=1">手机男生版</a><i class="line">|</i><a href="/">客户端下载</a>
+            </div>
+            <div class="top_r">
+                <div class="top_nearread">
+                    <a href="javascript:void(0);" class="nearread" id="headerUserHistoryBtn">最近阅读<i class="icon_down"></i></a>
+                    <div class="book_record" style="display:none" id="headerUserHistory">
+                    </div>
+                </div>
+                <span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="topMain">
+        <div class="box_center cf">
+            <a href="/?m=2" class="logo fl"><img src="/images/logo.png" alt="读书屋"></a>
+            <div class="searchBar fl">
+                <div class="search cf">
+                    <input type="text" placeholder="书名、作者、关键字" class="s_int" name="searchKey" id="searchKey">
+                    <label class="search_btn" id="btnSearch" onclick="searchByK()"><i class="icon"></i></label>
+                </div>
+            </div>
+            <div class="bookShelf fr" id="headerUserInfo">
+                <a class="sj_link" href="/user/favorites.html">我的书架</a>
+                <span class="user_link"><i class="line mr20">|</i><a href="/user/login.html" class="mr15">登录</a><a href="/user/register.html">注册</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="mainNav" id="mainNav">
+        <div class="box_center cf">
+            <ul class="nav" id="navModule">
+
+                <li class="on"><a href="/">首页</a></li>
+                <li><a href="/book/bookclass.html">全部作品</a></li>
+                <li><a href="/book/book_ranking.html">排行榜</a></li>
+                <li class=""><a href="/pay/index.html">充值</a></li>
+                <li><a href="/author/index.html" target="_blank">作家专区</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main box_center cf">
+    <div class="channelWrap channelBanner cf">
+        <div class="leftBox">
+            <div class="sliderContent">
+                <dl class="scBigImg" id="carouseBig">
+                    <dd class="on"><a href="/book/249.html">
+                        <img src="/localPic/2021/08/08/86f17132c3c6478e80ab61659b89abb7.jpg" alt="果蔬青恋"></a></dd>
+                    <dd><a href="/book/179.html">
+                        <img src="/localPic/2021/08/08/d250f8ee7acd4dc4af8629479ffe3a0e.jpg" alt="史上最强大皇子"></a></dd>
+                    <dd><a href="/book/166.html">
+                        <img src="/localPic/2021/08/08/592eedb2dd854760af9c9a0c5b08d7cb.jpg" alt="我能看见功法契合度"></a></dd>
+                    <dd><a href="/book/265.html">
+                        <img src="/localPic/2021/08/08/968f5920479f4bb2a0928f0feef9e71c.jpg" alt="他从暗夜里来"></a></dd>
+                </dl>
+                <div class="scSmallImg" id="carouseSmall">
+                    <ul>
+                        <li class="on">
+                        <img src="/localPic/2021/08/08/86f17132c3c6478e80ab61659b89abb7.jpg" alt="果蔬青恋"></li>
+                        <li>
+                        <img src="/localPic/2021/08/08/d250f8ee7acd4dc4af8629479ffe3a0e.jpg" alt="史上最强大皇子"></li>
+                        <li>
+                        <img src="/localPic/2021/08/08/592eedb2dd854760af9c9a0c5b08d7cb.jpg" alt="我能看见功法契合度"></li>
+                        <li>
+                        <img src="/localPic/2021/08/08/968f5920479f4bb2a0928f0feef9e71c.jpg" alt="他从暗夜里来"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="hot_articles">
+                <dl class="hot_recommend" id="topBooks1">
+                    <dt><a href="/book/199.html">爱是大雾散尽时</a></dt>
+                    <dd><a href="/book/261.html">成吉思汗的动物军团</a><a href="/book/261.html">成吉思汗的动物军团</a></dd>
+                    <dd><a href="/book/233.html">大王的病不治也罢</a><a href="/book/219.html">领袖兰宫</a></dd>
+                </dl>
+                <dl class="hot_recommend" id="topBooks2">
+                    <dt><a href="/book/152.html">重生学霸小甜妻</a></dt>
+                    <dd><a href="/book/171.html">神医毒妃帅炸了</a><a href="/book/202.html">团宠七宝有神通</a></dd>
+                    
+                </dl>
+
+                <dl class="hot_notice" id="indexNews">
+                    <dd style="text-align:left;"><span>[小明老师]</span><a href="/about/newsInfo-147.html">测试点</a>
+                    </dd>
+                    <dd style="text-align:left;"><span>[音乐]</span><a href="/about/newsInfo-146.html">001.测试点</a>
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+        <div class="rightBox">
+            <div class="title cf" id="weekcommend">
+                <h3>本周强推</h3>
+            </div>
+            <div class="rightList">
+                <ul id="currentWeek">
+                    <li class="on num1">
+                        <div class="book_name"><i>1</i><a class="name" href="/book/129.html">农门凰女</a></div>
+                        <div class="book_intro">
+                            <div class="cover"><a href="/book/129.html"><img src="/localPic/2021/08/08/4887e987a6b641218111a9767d251ca0.jpg" alt="农门凰女"></a>
+                            </div>
+                            <a class="txt" href="/book/129.html">悲摧穿越成婴儿，好不容易长大了，还没人说亲？现成的竹马夫君等在这里！ “凰儿，你是我们叶家童养媳，你大哥、二哥没娶你，堂哥娶你！”叶子皓背着叶青凰满心欢喜， “以后只疼你！”他是村里最年轻的秀才，背负不孝之名娶她进门，疼她、宠她、教她做一个无所畏惧的悍妻，对付纠缠不清的极品亲戚。 “媳妇，臭小子想要妹妹，咱多生几个给他带。”叶子皓发扬宠妻就要多生包子的精神，夜夜撩妻宠不停。 最新章节推荐地址：https://m.shuquge.com/s/144224.html</a>
+                        </div>
+                    </li>
+                    <li class="num2">
+                        <div class="book_name"><i>2</i><a class="name" href="/book/131.html">欧克暴君</a></div>
+                        <div class="book_intro">
+                            <div class="cover"><a href="/book/131.html"><img src="/localPic/2021/08/08/5176cfe8159d437ea1f8c57760f5625d.jpg" alt="欧克暴君"></a>
+                            </div>
+                            <a class="txt" href="/book/131.html">既残忍又狡猾既狡猾又残忍来自恒古星河的屠戮者，不可阻挡的绿色瘟疫，秉承着与生俱来的意志和天赋，它们是兵器，它们是火焰！ 当第一个欧克破土而出，整个世界便已注定将要在一场史无前例的WAAAGH下颤抖！ （老莫的古巨圾：127839947，想上来的小子就上来吧） 最新章节推荐地址：https://m.shuquge.com/s/146540.html</a>
+                        </div>
+                    </li>
+                    <li class="num3">
+                        <div class="book_name"><i>3</i><a class="name" href="/book/148.html">棒球之魂</a></div>
+                        <div class="book_intro">
+                            <div class="cover"><a href="/book/148.html"><img src="/localPic/2021/08/08/b2ae64546f264be49c1c8dbfa3579c9a.jpg" alt="棒球之魂"></a>
+                            </div>
+                            <a class="txt" href="/book/148.html">本文写实，只爱纯热血的读者会失望。球员的职业生涯有苦难有热血也有悲哀和无奈！ 慎读！尽力呈现一个真正的美职棒故事…也许它不够热血还有些残酷…但他是真实的。 这篇文是我的梦想！平生最大的愿望就是中国有球员能站上大联盟！中国能做出棒球的动漫！ 中国能够普及这项有魅力运动！然后~中国的孩子们能爱上棒球！ 最新章节推荐地址：https://m.shuquge.com/s/144724.html</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book_name"><i>4</i><a class="name" href="/book/167.html">农家之富贵贤妻</a></div>
+                        <div class="book_intro">
+                            <div class="cover"><a href="/book/167.html"><img src="/localPic/2021/08/08/7a1cfe0890f74820854b4627addc8ea6.jpg" alt="农家之富贵贤妻"></a>
+                            </div>
+                            <a class="txt" href="/book/167.html">新书《锦仙记》求收藏，求推荐。现代高门女脚下一滑，变成古代寒门农妇，上有极品亲戚要斗，下有二个包子要养活，那能怎么办？ 还不赶紧赚钱去……还有那谁，养你可以，咱能不爬床吗？ 最新章节推荐地址：https://m.shuquge.com/s/146157.html</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book_name"><i>5</i><a class="name" href="/book/132.html">宫之海</a></div>
+                        <div class="book_intro">
+                            <div class="cover"><a href="/book/132.html"><img src="/localPic/2021/08/08/ac1b19caacc5464ea515226b30ecc5cb.jpg" alt="宫之海"></a>
+                            </div>
+                            <a class="txt" href="/book/132.html">这是一个妄想利用一枚锁海印，将天兰大陆与大海隔绝开来的故事。大乾皇子唐一言，本可一生昏庸荒唐，安安静静地做个金陵一害，却不料恰逢天地变化，元气剧增，修行者霍乱世间，海族举兵来犯，屹立万年的大乾帝国似乎顷刻间便要四分五裂。 身为骄傲了万年的大乾皇室子弟，焉能眼看着帝国破灭，这一世... 最新章节推荐地址：https://m.shuquge.com/s/145071.html</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="channelWrap channelPic cf">
+        <div class="leftBox">
+            <div class="title">
+                <h2 class="on">热门推荐</h2>
+            </div>
+            <div class="picRecommend cf" id="hotRecBooks">
+                <div class="itemsList">
+                    <a class="items_img" href="/book/134.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/be7ccb6929f94b478fc3c1be57429e71.jpg" alt="云上夕轮">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/134.html">云上夕轮</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：纸墨云烟</a></p>
+                        <p class="intro"><a href="/book/134.html">【朱砂痣】三部系列：系列一 “月”《云上夕轮》。【放荡不羁少主×神秘莫测孤女】她，家族蒙冤千年，受尽冷眼，依然保持本心。 本以为世间冷暖再与她无关，直到遇见他。他，玩世不恭的少主，不受千条家规束缚，只想快意江湖。 本以为不会儿女情长，奈何树下遇见她。她，六界医界圣手的唯一徒弟，悬壶济世，医行天下。 本以为此生会嫁于温润男子，却做了百花争艳中最美的那一朵。他，六界最富有的风流仙君，举止轻浮，放荡不羁。 本只想做个无人管束没有牵绊的闲散神仙，可奈何采中了一朵情花无法自拔。 他，天生沾染魔气，无家可归，人人欺辱。本以为就那么魂归天地，却被她拉回世间，护他走了一遭坎坷人生。 他们，那刻的相遇，只是一眼，便是万年。 最新章节推荐地址：https://m.shuquge.com/s/144740.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/189.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/804b542cc4af49ba8a45598604798050.jpg" alt="娇女攻略">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/189.html">娇女攻略</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：花三朵</a></p>
+                        <p class="intro"><a href="/book/189.html">未婚夫被嫡妹勾搭上要退婚？后娘嫡妹联手陷害，一朵白莲花一个绿茶婊？ 老爹靠了后娘升官，如今又想靠她？某女弹弹手指：本姑娘一鞭子让你们变浮云！ 拼爹不如拼夫君，装纯不如简单粗暴！（官方群号：264601202敲门砖：任一人物名）……某女：做本郡主的男人，就要上得厅房，入得厨房……某王：我还入得了卧房，暖得了床。 功能强大，欢迎验货~ 最新章节推荐地址：https://m.shuquge.com/s/145634.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/198.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/83a8ea6097ab4de687621d2634f44bda.jpg" alt="温先生，房租交一下">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/198.html">温先生，房租交一下</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：叶琬安</a></p>
+                        <p class="intro"><a href="/book/198.html">许谂欠了钱，欠了很多钱。那个男人整天在学校门口堵她。为了还钱，只好让男人住进家里。 某天，男人签收了一个包裹。许谂惊恐的看着被拆封的包裹，一时间没想到质问自己的包裹为何被打开了，反倒是心虚的不行。 男人勾唇， “我没想到你还有这种喜好？”许谂淡定道， “我学广告的，这是全国大广赛的参赛题目。”又怕男人不相信还补了一句， “你可以上网查查的。” “哦，那和你买这个有什么关系？”许谂咬牙， “我没见过怎么写？ “现在既然见过，不如再体验体验？” “……”妖孽腹黑一肚子套路痴汉怂男主×表面冷静理智内心妈/卖批超级直女女主。 1v1甜宠，喜欢你情深已久 最新章节推荐地址：https://m.shuquge.com/s/145402.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/170.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/a9664bb94ff84bab858e392336045aa9.jpg" alt="八十年代之空间有点田">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/170.html">八十年代之空间有点田</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：列无暇</a></p>
+                        <p class="intro"><a href="/book/170.html">秦凝前一世吃了亏，这一世再不软弱， 亲爹使坏她都坑，亲奶奶欺负她都砍。 重生七十年代，没吃没喝不担心，她有空间； 遇上各类极品，斗智斗勇不害怕，她有胆量： 她往致富路上一气狂奔，就想当农村白富美； 只是，撞上一位腹黑的帅哥哥，她有点犯愁。 初见。 帅哥哥一副斯文模样，低声跟她说了一句话。 秦妹子没听清：一个大男人，说话不能大声一点？ 谁知帅哥哥当着所有人面大声喊：老子喜欢你！ 《从前书信慢，车马远，一生只爱一人》篇 帅哥哥：我真的喜欢你。 秦妹子：我也喜欢自己。 “我每天给你写一封信，你就能对我了解多些。” “我看，那样的话，我会对邮递员了解的多些。” “你喜欢什么，告诉我，回头买了给你寄来。” “我喜欢……买地。” “什么地？” “你能走得死心塌地。” “……！” 《唯愿面朝大海，春暖花开》篇 帅哥哥：你的理想是什么？ 秦妹子：混吃等死发大财算不算？ “只是这样？” “这样就好。你呢？” “我的理想是，你。” 《炊烟起了，我在门口等你。我们老了，我在来生等你》篇 帅哥哥：现在的人啊，都不会写信了。 秦妹子：所以呢，你也不写信了？ “我有啊，昨天我给你写信。” “在哪？” “你看你的哔哔机！” 秦妹子拿出刚买的时髦小匣子：“老婆，我爱你。” 最新章节推荐地址：https://m.shuquge.com/s/146546.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/182.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/32a89131f5c4429c85c035208352fbb0.jpg" alt="向往之人生如梦">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/182.html">向往之人生如梦</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：山林闲人</a></p>
+                        <p class="intro"><a href="/book/182.html">娱乐这个圈，转转悠悠仿佛就似一场梦一般！秦昊开始了这个如梦似换的人生梦！ 平行世界，莫要带入现实，谢谢！单女主，生活爽文，不做玄幻，有古武。 读者群:948479917.让我看看有多少人想骂我吧！ 最新章节推荐地址：https://m.shuquge.com/s/146246.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/203.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/7c689d93eaf149f2b68bef1bc88ca096.jpg" alt="遇见世界和你">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/203.html">遇见世界和你</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：尘埃里的半糖</a></p>
+                        <p class="intro"><a href="/book/203.html">三年前，顾典亲眼看着父亲从楼顶上跳下来，死在自己面前。她迫不得已放弃心爱之人，放弃理想，远走他乡。 三年后，她重新归来，一无所有，孑然一人，却遇见了那道他生命里的光——沈未意。他爱她，信她，尊重她，更帮她重拾梦想。从一个代课老师到知名资深婚礼策划师，顾典往前走的每一步，沈未意都有参与。 她说：“沈未意，我不想要你泛滥的同情，我想要的是相互比肩的婚姻。” 沈未意只说了一个字，好。 她说：“为什么是我？” 沈未意答道：“遇见你之前，我的世界都是乱糟糟的，可是遇见你之后，就好像乌云都有了归宿。” 遇见你，我就遇见了我的世界…… 最新章节推荐地址：https://m.shuquge.com/s/144303.html</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="bookrank1_ShowBookRank">
+            <div class="rightBox ">
+                <div class="title cf">
+                    <h3 class="on">点击榜单</h3>
+                </div>
+                <div class="rightList">
+                    <ul id="clickRankBooks">
+
+
+                    </ul>
+                    <div class="more"><a href="/book/book_ranking.html">查看更多&gt;</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="channelWrap channelPic cf">
+        <div class="leftBox">
+            <div class="title">
+                <h2>精品推荐</h2>
+            </div>
+            <div class="picRecommend cf" id="classicBooks">
+                <div class="itemsList">
+                    <a class="items_img" href="/book/224.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/79c00214f1db414dbac3a0f5fe35c298.jpg" alt="开局得到如来舍利">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/224.html">开局得到如来舍利</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：目子韦</a></p>
+                        <p class="intro"><a href="/book/224.html">勘破万法，破劫成仙。(本书不是西游题材，不是开局无敌，也无系统，欢迎阅读。 ) 最新章节推荐地址：https://m.shuquge.com/s/145015.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/264.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/429cf73de0164a88a6e7be3164dead1b.jpg" alt="农家有只小凤凰">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/264.html">农家有只小凤凰</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：神医桃花夭夭</a></p>
+                        <p class="intro"><a href="/book/264.html">风采凰怎么也没想到，一向疼爱自己的亲叔叔，居然会将自己打下悬崖，穿越到现代农村姑娘王二妮身上，瘦弱、单薄。 这样的女子居然会被继父拿来，抵了赌债。送给了村上有名的三兄弟家里，正被轻薄的风采凰醒了过来，一顿拳打脚踢姑娘我是高手，我怕谁？ 严惩继父，到处伸张正义！看姐虽是古代人，照样可以在现代混的风生水起！ 喂。。。你干嘛？女侠求打包带走滚。。。。女侠我滚到床上等你来哦。 。。。 最新章节推荐地址：https://m.shuquge.com/s/145543.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/150.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/1690644f39dd4d4ebc83e7eeff6a1b8b.jpg" alt="某御主的型月事件簿">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/150.html">某御主的型月事件簿</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：不归之乡</a></p>
+                        <p class="intro"><a href="/book/150.html">同世界观新书《我在型月当剑豪》，欢迎各位读者大佬移步。重回2003年，面对的不是新生，而是即将毁灭的世界。 人理烧却，魔神横行，未来危在旦夕。赌上御主之名，定要赢下这场史无前例的圣杯战争！ 关键词：fate，fgo，fsn，型月，艾蕾。ps：单女主，无后宫，型月世界观，又名《冥界女神怎么这么可爱》 最新章节推荐地址：https://m.shuquge.com/s/146031.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/142.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/b1ffeb3818e94860ae642d5632115bd4.jpg" alt="这个骑士读大一">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/142.html">这个骑士读大一</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：克苏鲁的幻影</a></p>
+                        <p class="intro"><a href="/book/142.html">骑士血染圣特伦平原，宫殿焚寂，荣耀随着时光之轮逐渐被忘记。天使再不降临，世间再无骑士，寒穆纪元2000，3000骑士之血干涸，从此凡间再无平静，此战历经七十七日，参战者无一生还，史称圣瓦西特里伦战。 时空的另一端，一个孩子睁开双眼，刺眼的光照入他眼中，重生的骑士等待他的是从未梦见的另一个世界。 仅存的圣瓦西特里伦骑士啊，你是否一息尚存。 最新章节推荐地址：https://m.shuquge.com/s/145088.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/214.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/0848da7f75f6416a810293be45eb20e8.jpg" alt="他太太才是真大佬">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/214.html">他太太才是真大佬</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：笑倾一世</a></p>
+                        <p class="intro"><a href="/book/214.html">【女强爽文&amp;女主帅男主苏】 母亲去世，父亲另娶，唐千缈被安排住进“陌生男人”的家里。 从此便被这一家子捧着宠。 热情伯母：“缈缈别见外，从今以后我就是你妈，这儿就是你家！” 温柔伯父：“缈缈，放下放下，女孩子做什么饭，让你弦哥哥去做。” 暖心小弟：“姐，卷子我帮你写，你就安心打游戏去吧。” 封弦对家人这副嘴脸嗤之以鼻，并警告小姑娘：“离我远点。” 不久后，却画风突变—— 千缈深夜归来，被某男人堵在楼梯间质问：“刚才送你回来的男人是谁？嗯？” 她莞尔一笑：“你吃醋啊？” 男人心神被她的笑晃乱，心跳加速。 自此，一向冷静自持的封先生便迷失在一个小丫头的笑里。 小丫头不招爹疼，从小养在乡野间，无权无势容易自卑，他得小心护着疼着，任何人都不能欺负她！ 可奇怪的是，每次不等他出手，这小妮子就能自如地解决。 某日，下属战战兢兢地来报告他—— “爷，财富榜上，千缈小姐的排名在您……之上！” 封先生低头扫过那些资料，眼色逐渐深沉。 原来他家小妮子除了是一名学生，还有这么多身份！ 那些身份随便抓一个出来，都足以让人目瞪口呆！ …… 众人只知嘲讽唐千缈配不上封先生，却不知，封先生每天都在努力提升自己，争取赶上他家小妮子的步伐。 最新章节推荐地址：https://m.shuquge.com/s/146257.html</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="itemsList">
+                    <a class="items_img" href="/book/220.html">
+                        <img class="lazyload" src="/images/default.gif" data-src="/localPic/2021/08/08/4ad06c208d754dfc9575abb2311cb5f0.jpg" alt="邪魅皇帝追冷妻">
+                    </a>
+                    <div class="items_txt">
+                        <h4><a href="/book/220.html">邪魅皇帝追冷妻</a></h4>
+                        <p class="author"><a href="javascript:void(0)">作者：作者：稀饭乞丐</a></p>
+                        <p class="intro"><a href="/book/220.html">那一年他遇到她，如春水映梨花， 她的容颜，他记得，直至一生难忘， 他倾尽天下，自别人手中夺回他， 他许她一世繁华，恋她一生牵挂， 他不懂，她要的，她不要，他给的， 直到天下尽乱，硝烟纷飞的战场， 他的眼神温暖却绝望，缓缓倒在，她前来的路上， 为她，他付出生命做代价，只为与她生死相随； 为他，她辗转天下，只为与他再续前缘。 他说，天下和你我尽想要，如若只能二选一，倾尽天下只为你。 他说，这么多年，风没一刻放弃，即使背弃天下，我也不会背弃我的清儿。 我是大姐系列一邪魅皇帝追冷妻隆重登场，饭饭们敬请期待我是大姐系列二的爱情故事吧！ （本文原名一生一世一双人，讲的就是一生一世一双人的爱情故事， 最新章节推荐地址：https://m.shuquge.com/s/146534.html</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="bookrank2_ShowBookRank">
+            <div class="rightBox ">
+                <div class="title cf">
+                    <h3 class="on">新书榜单</h3>
+                </div>
+                <div class="rightList">
+                    <ul id="newRankBooks">
+
+
+                    </ul>
+                    <div class="more"><a href="/book/book_ranking.html?type=1">查看更多&gt;</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="channelWrap channelTable cf">
+        <div class="leftBox">
+            <div class="title">
+                <h2>最新更新</h2>
+            </div>
+            <div class="updateTable">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="style">类别</th>
+                        <th class="name">书名</th>
+                        <th class="chapter">最新章节</th>
+                        <th class="author">作者</th>
+                        <th class="time">更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody id="newRankBooks2">
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="bookrank5_ShowBookRank">
+            <div class="rightBox mb20">
+                <div class="title cf">
+                    <h3 class="on">更新榜单</h3>
+                </div>
+                <div class="rightList">
+                    <ul id="updateRankBooks">
+
+
+                    </ul>
+                    <div class="more"><a href="/book/book_ranking.html?type=2">查看更多&gt;</a></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="friend_link">
+    <div class="box_center cf" id="friendLink">
+        <span>友情链接：</span>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="box_center cf">
+        <div class="copyright">
+            <ul>
+                <li class="menu"><a href="/?to=mobile">手机站</a><i class="line">|</i><a href="/">网站首页</a><i class="line">|</i><a href="/about/default.html">关于我们</a><i class="line">|</i><a href="/about/contact.html">联系我们</a><i class="line">|</i><a href="/user/feedback.html">反馈留言</a><i class="line">|</i><a href="/author/index.html">作家专区</a><i class="line">|</i><a href="/mobile/fiction_house.apk">客户端</a></li>
+                <li>Copyright (C) xxx.yy.cc All rights reserved&nbsp;&nbsp;读书屋版权所有</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/javascript/jquery-1.8.0.min.js" type="text/javascript"></script><script src="/layui/layui.all.js" type="text/javascript"></script><script src="/javascript/header.js" type="text/javascript"></script><script src="/javascript/common.js" type="text/javascript"></script>
+<script src="/javascript/lazyload.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+    var $div = $('.scBigImg dl');//放置大图容器
+    var $nav = $('.scSmallImg li');//放置缩略图容器
+    var num = -1;
+    var open;
+
+    function changeKv() {
+        if (num >= $nav.length - 1) {
+            num = 0;
+        } else {
+            num++;
+        }
+        $nav.eq(num).trigger('mouseenter');
+        open = setTimeout(changeKv, 3000);
+    }
+
+    changeKv();
+    $nav.each(function (index) {
+        $(this).off('mouseenter').on('mouseenter', function () {
+            clearTimeout(open);
+
+            $(this).addClass('on').siblings().removeClass('on');
+            $('.scBigImg dd').eq(index).addClass('on').siblings().removeClass('on');
+            $('.scSmallImg').off('mouseleave').on('mouseleave', function () {
+                num = index;
+                setTimeout(function () {
+                    changeKv();
+                }, 3000)
+            })
+        });
+    });
+    $div.each(function () {
+        $(this).off('mouseenter').on('mouseenter', function () {
+            clearTimeout(open);
+        });
+    });
+
+    lazyload();
+    $(function () {
+
+        //点击榜单数据查询
+        $.ajax({
+            type: "get",
+            url: "/book/listClickRank",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 200) {
+                    var clickRankBooks = data.data;
+                    var clickRankBooksHtml = "";
+                    for (var i = 0; i < clickRankBooks.length; i++) {
+                        var clickRankBook = clickRankBooks[i];
+                        var classHtml = "";
+                        var imageHtml = "";
+                        if (i == 0) {
+                            classHtml = "on";
+                            imageHtml = "<img src=\"" + clickRankBook.picUrl + "\" alt=\"" + clickRankBook.bookName + "\"/>";
+                        }
+                        if (i < 3) {
+                            classHtml += (" num" + (i + 1));
+                        }
+                        clickRankBooksHtml += ("<li class=\"" + classHtml + "\">\n" +
+                            "                            <div class=\"book_name\">\n" +
+                            "                                <i>" + (i + 1) + "</i><a class=\"name\" href=\"/book/" + clickRankBook.id + ".html\">" + clickRankBook.bookName + "</a>\n" +
+                            "                            </div>\n" +
+                            "                            <div class=\"book_intro\">\n" +
+                            "                                <div class=\"cover\">\n" +
+                            "                                    <a href=\"book/" + clickRankBook.id + ".html\">"+ imageHtml +"</a>\n" +
+                            "                                </div>\n" +
+                            "                                <a class=\"txt\" href=\"/book/" + clickRankBook.id + ".html\">" + clickRankBook.bookDesc + "</a>\n" +
+                            "                            </div>\n" +
+                            "\n" +
+                            "                        </li>");
+                    }
+                    $("#clickRankBooks").html(clickRankBooksHtml);
+                } else {
+                    layer.alert(data.msg);
+                }
+
+            },
+            error: function () {
+                layer.alert('网络异常');
+            }
+        })
+        //新书榜单查询
+        $.ajax({
+            type: "get",
+            url: "/book/listNewRank",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 200) {
+                    var newRankBooks = data.data;
+                    var newRankBooksHtml = "";
+                    for (var i = 0; i < newRankBooks.length; i++) {
+                        var newRankBook = newRankBooks[i];
+                        var classHtml = "";
+                        var imageHtml = "";
+                        if (i == 0) {
+                            classHtml = "on";
+                            imageHtml = "<img src=\"" + newRankBook.picUrl + "\" alt=\"" + newRankBook.bookName + "\"/>";
+                        }
+                        if (i < 3) {
+                            classHtml += (" num" + (i + 1));
+                        }
+                        newRankBooksHtml += ("<li class=\"" + classHtml + "\">\n" +
+                            "                            <div class=\"book_name\">\n" +
+                            "                                <i>" + (i + 1) + "</i><a class=\"name\" href=\"/book/" + newRankBook.id + ".html\">" + newRankBook.bookName + "</a>\n" +
+                            "                            </div>\n" +
+                            "                            <div class=\"book_intro\">\n" +
+                            "                                <div class=\"cover\">\n" +
+                            "                                    <a href=\"book/" + newRankBook.id + ".html\">" + imageHtml + "</a>\n" +
+                            "                                </div>\n" +
+                            "                                <a class=\"txt\" href=\"/book/" + newRankBook.id + ".html\">" + newRankBook.bookDesc + "</a>\n" +
+                            "                            </div>\n" +
+                            "\n" +
+                            "                        </li>");
+                    }
+                    $("#newRankBooks").html(newRankBooksHtml);
+                } else {
+                    layer.alert(data.msg);
+                }
+
+            },
+            error: function () {
+                layer.alert('网络异常');
+            }
+        })
+        //更新榜单查询
+        $.ajax({
+            type: "get",
+            url: "/book/listUpdateRank",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 200) {
+                    var updateRankBooks = data.data;
+                    var updateRankBookHtml = "";
+                    var updateRankBookHtml2 = "";
+                    for (var i = 0; i < updateRankBooks.length; i++) {
+                        var updateRankBook = updateRankBooks[i];
+                        var classHtml = "";
+                        var imageHtml = "";
+                        if (i == 0) {
+                            classHtml = "on";
+                            imageHtml = "<img\ src=\"" + updateRankBook.picUrl + "\" alt=\"" + updateRankBook.bookName + "\"/>";
+                        }
+                        if (i < 3) {
+                            classHtml += (" num" + (i + 1));
+                        }
+                        if (i < 10) {
+                            updateRankBookHtml += ("<li class=\"" + classHtml + "\">\n" +
+                                "                            <div class=\"book_name\">\n" +
+                                "                                <i>" + (i + 1) + "</i><a class=\"name\" href=\"/book/" + updateRankBook.id + ".html\">" + updateRankBook.bookName + "</a>\n" +
+                                "                            </div>\n" +
+                                "                            <div class=\"book_intro\">\n" +
+                                "                                <div class=\"cover\">\n" +
+                                "                                    <a href=\"book/" + updateRankBook.id + ".html\">" + imageHtml + "</a>\n" +
+                                "                                </div>\n" +
+                                "                                <a class=\"txt\" href=\"/book/" + updateRankBook.id + ".html\">" + updateRankBook.bookDesc + "</a>\n" +
+                                "                            </div>\n" +
+                                "\n" +
+                                "                        </li>");
+                        }
+                        updateRankBookHtml2 += ("<tr>\n" +
+                            "                        <td class=\"style\"><a href=\"book/bookclass.html?c=" + updateRankBook.catId + "\">[" + updateRankBook.catName + "]</a></td>\n" +
+                            "                        <td class=\"name\"><a href=\"/book/" + updateRankBook.id + ".html\">" + updateRankBook.bookName + "</a></td>\n" +
+                            "                        <td class=\"chapter\"><a href=\"/book/" + updateRankBook.id + ".html\">" + updateRankBook.lastIndexName + "</a>\n" +
+                            "                            <i class=\"\"></i>\n" +
+                            "                        </td>\n" +
+                            "                        <td class=\"author\"><a href=\"javascript:void(0)\">" + updateRankBook.authorName + "</a></td>\n" +
+                            "                        <td class=\"time\">" + updateRankBook.lastIndexUpdateTime + "</td>\n" +
+                            "                    </tr>");
+                    }
+                    $("#updateRankBooks").html(updateRankBookHtml);
+                    $("#newRankBooks2").html(updateRankBookHtml2);
+                } else {
+                    layer.alert(data.msg);
+                }
+
+            }
+            ,
+            error: function () {
+                layer.alert('网络异常');
+            }
+        })
+        //友情链接查询
+        $.ajax({
+            type: "get",
+            url: "/friendLink/listIndexLink",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 200) {
+                    var friendLinkList = data.data;
+                    var friendLinkHtml = "";
+                    for (var i = 0; i < friendLinkList.length; i++) {
+                        var friendLink = friendLinkList[i];
+                        friendLinkHtml += ("<a target='_blank' href=\"" + friendLink.linkUrl + "\">" + friendLink.linkName + "</a>");
+                    }
+                    $("#friendLink").append(friendLinkHtml);
+                } else {
+                    layer.alert(data.msg);
+                }
+
+            },
+            error: function () {
+                layer.alert('网络异常');
+            }
+        })
+        $("#weekcommend h3").mouseover(function () {
+            $("#weekcommend h3").removeClass("on");
+            $(this).addClass("on");
+            if ($(this).attr("class").indexOf("fr") >= 0) {
+                $("#currentWeek").hide();
+                $("#currentPreWeek").show();
+            } else {
+                $("#currentPreWeek").hide();
+                $("#currentWeek").show();
+            }
+        });
+    });
+</script>
+</body></html>

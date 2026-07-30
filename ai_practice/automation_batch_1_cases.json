@@ -1,0 +1,72 @@
+[
+  {
+    "test_id": "TC-001",
+    "requirement_id": "R1",
+    "priority": "High",
+    "scenario": "Single item review details visible",
+    "expected_checks": [
+      "thumbnail visible",
+      "product name visible and non-empty",
+      "selected attributes visible",
+      "unit price visible"
+    ]
+  },
+  {
+    "test_id": "TC-004",
+    "requirement_id": "R2",
+    "priority": "High",
+    "scenario": "Pricing section fields visible",
+    "expected_checks": [
+      "subtotal visible",
+      "estimated tax visible",
+      "shipping visible",
+      "grand total visible"
+    ]
+  },
+  {
+    "test_id": "TC-005",
+    "requirement_id": "R2",
+    "priority": "High",
+    "scenario": "Grand total calculation is correct",
+    "expected_checks": [
+      "subtotal parsed",
+      "tax parsed",
+      "shipping parsed",
+      "grand total parsed",
+      "grand total equals subtotal plus tax plus shipping"
+    ]
+  },
+  {
+    "test_id": "TC-008",
+    "requirement_id": "R3",
+    "priority": "High",
+    "scenario": "Product name link navigation",
+    "expected_checks": [
+      "click product name",
+      "land on matching product details page"
+    ]
+  },
+  {
+    "test_id": "TC-011",
+    "requirement_id": "R4",
+    "priority": "High",
+    "scenario": "Displayed data matches cart source",
+    "expected_checks": [
+      "ui product name matches source",
+      "ui attributes match source",
+      "ui unit price matches source"
+    ]
+  },
+  {
+    "test_id": "TC-013",
+    "requirement_id": "R5",
+    "priority": "High",
+    "scenario": "Required pricing shown before place-order action",
+    "expected_checks": [
+      "subtotal visible before place order",
+      "estimated tax visible before place order",
+      "shipping visible before place order",
+      "grand total visible before place order"
+    ]
+  }
+]

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Checkout Review Page Testcases</title>
+  </head>
+  <body>
+    <outline text="Checkout Review Page (E-commerce)">
+      <outline text="R1: Product Information Visibility">
+        <outline text="TC-001 (Positive, High): Single item review details visible">
+          <outline text="Precondition: Cart has 1 valid item with name, attributes, price, image"/>
+          <outline text="Steps: Open checkout review page; locate item card"/>
+          <outline text="Expected: Thumbnail, accurate name, selected attributes, and unit price are visible"/>
+        </outline>
+        <outline text="TC-002 (Positive, High): Multiple items show correct details">
+          <outline text="Precondition: Cart has 2+ items with different attributes"/>
+          <outline text="Steps: Open checkout review page; compare each item with cart source"/>
+          <outline text="Expected: Every item shows its own thumbnail, name, attributes, and unit price"/>
+        </outline>
+        <outline text="TC-003 (Negative, Medium): Missing selected attribute data">
+          <outline text="Precondition: Cart item missing selected attribute (e.g., size)"/>
+          <outline text="Steps: Open checkout review page; check affected item block"/>
+          <outline text="Expected: Fallback/validation appears; attribute not silently omitted"/>
+        </outline>
+      </outline>
+
+      <outline text="R2: Pricing Breakdown Clarity">
+        <outline text="TC-004 (Positive, High): Pricing section fields visible">
+          <outline text="Precondition: Valid subtotal, tax, shipping values exist"/>
+          <outline text="Steps: Open checkout review page; locate pricing section"/>
+          <outline text="Expected: Subtotal, estimated tax, shipping, and grand total are visible"/>
+        </outline>
+        <outline text="TC-005 (Positive, High): Grand total calculation is correct">
+          <outline text="Precondition: Known values (e.g., 100 + 6 + 4)"/>
+          <outline text="Steps: Open review page; read rows; compute expected total"/>
+          <outline text="Expected: Displayed grand total equals subtotal + tax + shipping"/>
+        </outline>
+        <outline text="TC-006 (Boundary, Medium): Free shipping display and math">
+          <outline text="Precondition: Shipping value is 0.00"/>
+          <outline text="Steps: Open review page; read shipping and grand total"/>
+          <outline text="Expected: Shipping shows 0.00 or Free; total math remains correct"/>
+        </outline>
+        <outline text="TC-007 (Boundary, Medium): Zero tax display and math">
+          <outline text="Precondition: Tax value is 0.00"/>
+          <outline text="Steps: Open review page; read tax and grand total"/>
+          <outline text="Expected: Tax row visible with zero value; total matches formula"/>
+        </outline>
+      </outline>
+
+      <outline text="R3: Actionable Product Links">
+        <outline text="TC-008 (Positive, High): Product name link navigation">
+          <outline text="Precondition: Review item has valid product URL"/>
+          <outline text="Steps: Click product name; observe landing page"/>
+          <outline text="Expected: User lands on matching product details page"/>
+        </outline>
+        <outline text="TC-009 (Positive, High): Product image link navigation">
+          <outline text="Precondition: Review item has valid product URL"/>
+          <outline text="Steps: Click image thumbnail; observe landing page"/>
+          <outline text="Expected: User lands on matching product details page"/>
+        </outline>
+        <outline text="TC-010 (Negative, Medium): Incorrect link target detection">
+          <outline text="Precondition: Link target intentionally mismatched"/>
+          <outline text="Steps: Click name/image; compare landed product ID vs source item"/>
+          <outline text="Expected: Test flags defect when landed product does not match clicked item"/>
+        </outline>
+      </outline>
+
+      <outline text="R4: Data Accuracy">
+        <outline text="TC-011 (Positive, High): Displayed data matches cart source">
+          <outline text="Precondition: Source cart payload available for comparison"/>
+          <outline text="Steps: Open review page; compare UI values with source data"/>
+          <outline text="Expected: Name, attributes, and unit price exactly match source"/>
+        </outline>
+        <outline text="TC-012 (Boundary, Medium): Currency format consistency">
+          <outline text="Precondition: Prices include decimal values"/>
+          <outline text="Steps: Open review page; verify all price strings"/>
+          <outline text="Expected: Consistent currency formatting (e.g., $12.34)"/>
+        </outline>
+        <outline text="TC-015 (Negative, High): Product name missing from source">
+          <outline text="Precondition: Cart item has null/empty product name"/>
+          <outline text="Steps: Open review page; locate affected item"/>
+          <outline text="Expected: No blank name; fallback appears; checkout blocked as defect"/>
+        </outline>
+        <outline text="TC-016 (Negative, High): Unit price missing from source">
+          <outline text="Precondition: Cart item has null/empty unit price"/>
+          <outline text="Steps: Open review page; locate affected item and pricing section"/>
+          <outline text="Expected: Explicit error/fallback; checkout blocked until valid unit price"/>
+        </outline>
+      </outline>
+
+      <outline text="R5: No Surprise Checkout Experience">
+        <outline text="TC-013 (Positive, High): Required pricing shown before order action">
+          <outline text="Precondition: User on review page before place-order click"/>
+          <outline text="Steps: Open review page; inspect before place order"/>
+          <outline text="Expected: Required pricing fields visible before place-order action"/>
+        </outline>
+        <outline text="TC-014 (Negative, High): Missing pricing field blocks checkout">
+          <outline text="Precondition: One required pricing field intentionally removed"/>
+          <outline text="Steps: Open review page; attempt place-order flow"/>
+          <outline text="Expected: Checkout blocked or explicit blocking error shown"/>
+        </outline>
+      </outline>
+    </outline>
+  </body>
+</opml>

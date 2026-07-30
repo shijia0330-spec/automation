@@ -1,0 +1,32 @@
+---
+description: Playwright web automation standards for Python tests
+globs: web_automation/**/*.py
+alwaysApply: false
+---
+
+# Playwright Web Automation Standards
+
+- Use Page Object Model: keep selectors and UI actions in `web_automation/pages/`, not in test files.
+- Keep test names traceable to testcase IDs when available (for example `test_tc_001_*`).
+- Prefer robust selectors in this order:
+  1) `get_by_test_id`
+  2) `get_by_role` with stable accessible name
+  3) stable CSS locator
+- Avoid brittle selectors (`nth-child`, deep XPath) unless no alternative exists.
+- Use explicit assertions (`expect(...)` / clear `assert`) for user-visible behavior.
+- Reuse helper methods for repeated actions (open page, login, search, navigation).
+- Keep one behavior focus per test case.
+
+## Quick Examples
+
+```python
+# ✅ Good: page object usage
+novel_home = NovelHomePage(page)
+novel_home.open()
+novel_home.search("test")
+```
+
+```python
+# ❌ Avoid: raw selectors repeated in tests
+page.locator("div > ul > li:nth-child(3) > a").click()
+```

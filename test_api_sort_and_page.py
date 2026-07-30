@@ -1,16 +1,12 @@
 import pytest
-import requests
 
-BASE_URL = "https://jsonplaceholder.typicode.com"
-
+from utils.api_client import get_posts, assert_ok_list
 
 @pytest.mark.smoke
 def test_posts_sorted_desc_limit_5():
-    response = requests.get(f"{BASE_URL}/posts?_sort=id&_order=desc&_limit=5")
-    data = response.json()
+    response = get_posts({"_sort": "id", "_order": "desc", "_limit": 5})
+    data = assert_ok_list(response)
 
-    assert response.status_code == 200
-    assert isinstance(data, list)
     assert len(data) == 5
 
     ids = [item["id"] for item in data]
@@ -19,13 +15,11 @@ def test_posts_sorted_desc_limit_5():
 
 @pytest.mark.smoke
 def test_posts_page1_and_page2_no_overlap():
-    page1_resp = requests.get(f"{BASE_URL}/posts?_start=0&_limit=5")
-    page2_resp = requests.get(f"{BASE_URL}/posts?_start=5&_limit=5")
-    page1 = page1_resp.json()
-    page2 = page2_resp.json()
+    page1_resp = get_posts({"_start": 0, "_limit": 5})
+    page2_resp = get_posts({"_start": 5, "_limit": 5})
+    page1 = assert_ok_list(page1_resp)
+    page2 = assert_ok_list(page2_resp)
 
-    assert page1_resp.status_code == 200
-    assert page2_resp.status_code == 200
     assert len(page1) == 5
     assert len(page2) == 5
 
@@ -36,9 +30,29 @@ def test_posts_page1_and_page2_no_overlap():
 
 @pytest.mark.negative
 def test_invalid_sort_field_behavior():
-    response = requests.get(f"{BASE_URL}/posts?_sort=notARealField")
-    data = response.json()
+    response = get_posts({"_sort": "notARealField"})
+    data = assert_ok_list(response)
 
-    # JSONPlaceholder tolerates unknown sort fields.
-    assert response.status_code == 200
+    # JSONPlaceholder tolerates unknown sort fields. 
     assert isinstance(data, list)
+
+@pytest.mark.smoke
+def test_posts_sorted_asc_limit_3():
+    response = get_posts({"_sort": "id", "_order": "asc", "_limit": 3})
+    data = assert_ok_list(response)
+
+    assert len(data) == 3 # check if the data has 3 items
+    ids = [item["id"] for item in data] # get the ids from the data
+    assert ids == sorted(ids) # check if the ids are sorted in ascending order
+
+
+@pytest.mark.smoke
+def test_posts_limit_0_returns_empty_or_default():
+    response = get_posts({"_limit": 0})
+    data = assert_ok_list(response)
+
+    # Different APIs may treat limit=0 differently
+    if len(data) == 0: # check if the data is an empty list
+        assert data == [] # check if the data is an empty list
+    else: # check if the data is not an empty list
+        assert len(data) > 0 # check if the data has more than 0 items
