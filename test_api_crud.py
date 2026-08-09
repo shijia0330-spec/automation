@@ -1,14 +1,15 @@
-from api_client.todos_client import create_todo, delete_todo, put_todo
+from turtle import update
+from api_client.todos_client import create_todo, delete_todo, update_todo
 
 
-def test_put_todo():
+def test_update_todo():
     todo = {
         "userId": 1,
         "title": "Learn API automation",
         "completed": False,
     }
 
-    response = put_todo(1, todo)
+    response = update_todo(1, todo)
     assert response.status_code == 200
     assert response.json()["title"] == "Learn API automation"
 
