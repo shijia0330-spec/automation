@@ -32,6 +32,13 @@ def test_read_todo():
     assert response.json()["title"] == "delectus aut autem" # check if the response json title is "Learn API automation"
     assert response.json()["completed"] == False # check if the response json completed is False
 
+
+
+def test_read_missing_todo():
+    response = get_todo_by_id(999)
+    assert response.status_code == 404
+    assert response.json() == {}
+
 def test_delete_todo():
     response = delete_todo(1)
     assert response.status_code == 200
@@ -43,4 +50,4 @@ def test_delete_todo():
 #     assert response.status_code == 200
 #     assert response.json()["id"] == 1
 #     print(response.status_code)
-#     print(response.json())
+#     print(response.json())z
