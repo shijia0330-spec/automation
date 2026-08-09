@@ -22,8 +22,6 @@ def update_todo(todo_id, todo: dict): # todo_id is the id of the todo to update,
 def delete_todo(todo_id): # todo_id is the id of the todo to delete
     return client.delete(f"/todos/{todo_id}")
 
-def put_todo(todo_id, todo: dict): # todo_id is the id of the todo to put, todo is a dictionary of the todo to put
-    return client.put(f"/todos/{todo_id}", json=todo)
 
 def get_invalid_todos_endpoint():
     return client.get("/invalid-todos-endpoint")
