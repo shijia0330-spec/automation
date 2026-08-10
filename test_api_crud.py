@@ -1,5 +1,6 @@
 import pytest
 from api_client.todos_client import create_todo, delete_todo, get_todo_by_id, patch_todo, update_todo
+from utils.api_client import assert_todo_schema
 
 
 @pytest.fixture
@@ -44,9 +45,8 @@ def test_read_todo(todo_id):
     response = get_todo_by_id(todo_id)
     data = response.json()
     assert response.status_code == 200
+    assert_todo_schema(data)
     assert data["id"] == todo_id
-    assert "title" in data
-    assert "completed" in data
 
 
 @pytest.mark.negative

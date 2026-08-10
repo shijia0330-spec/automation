@@ -6,7 +6,7 @@ from api_client.todos_client import (
     get_todos,
 
 )
-from utils.api_client import assert_ok_dict, assert_ok_list, assert_todo_keys
+from utils.api_client import assert_ok_dict, assert_ok_list, assert_todo_keys, assert_todo_schema
 
 
 @pytest.mark.smoke
@@ -67,7 +67,5 @@ def test_invalid_todo_id_returns_404_and_empty_object(todo_id):
 def test_valid_todo_id_returns_200_and_todo_object(todo_id):
     response = get_todo_by_id(todo_id)
     data = assert_ok_dict(response)
+    assert_todo_schema(data)
     assert data["id"] == todo_id
-    assert "userId" in data
-    assert "title" in data
-    assert "completed" in data

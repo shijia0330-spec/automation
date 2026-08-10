@@ -22,22 +22,40 @@ python3 -m pip install pytest requests
 
 ## Run Tests Locally
 
-Run all:
+Run all API tests:
 
 ```bash
-pytest test_api_smoke.py
+pytest -q test_api_*.py
+```
+
+Run CRUD tests only:
+
+```bash
+pytest -q test_api_crud.py
 ```
 
 Run smoke only:
 
 ```bash
-pytest -m smoke test_api_smoke.py
+pytest -m smoke -q test_api_*.py
 ```
 
 Run negative only:
 
 ```bash
-pytest -m negative test_api_smoke.py
+pytest -m negative -q test_api_*.py
+```
+
+Collect tests only (import/collection check):
+
+```bash
+pytest --collect-only -q test_api_*.py
+```
+
+Run a single test by keyword:
+
+```bash
+pytest -q test_api_crud.py -k "invalid_payload_type"
 ```
 
 ## Notes

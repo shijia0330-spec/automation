@@ -26,3 +26,14 @@
 - On JSONPlaceholder (mock API), invalid update/patch IDs may still return `200` instead of `404`.
 - For this mock API, negative tests should validate observed behavior (for example response echo) instead of assuming strict validation codes.
 - If we specifically want a `404` expectation, `get_todo_by_id(999999)` is a better case than `PATCH/PUT`.
+
+## Common Failure Patterns
+- Import mismatch causes collection errors (example: test imports function name not defined in client file).
+- Wrong method signature usage causes runtime test errors (example: calling `patch_todo(id)` without payload).
+- Expecting strict status codes on mock APIs causes false failures (example: PATCH invalid id still returns `200`).
+- Outdated CI run/old commit can show already-fixed errors, so always verify the run commit hash first.
+
+## Flaky Risk Review
+- Hardcoded exact title/content from live public API can change and make assertions brittle.
+- Overly strict body equality on endpoints with mock behavior can fail unexpectedly.
+- More stable pattern: assert required keys, types, and core behavior instead of fragile full-response matching.
