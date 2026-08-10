@@ -27,3 +27,6 @@ class ApiClient:
 
     def delete(self, path: str) -> requests.Response:
         return self.request("DELETE", path)
+
+    def patch(self, path: str, json=None) -> requests.Response:
+        return self.request("PATCH", path, json=json)
