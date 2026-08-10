@@ -34,3 +34,9 @@ def assert_todo_schema(item):
     assert isinstance(item["userId"], int)
     assert isinstance(item["title"], str)
     assert isinstance(item["completed"], bool)
+
+def assert_post_schema(item):
+    assert isinstance(item["id"], int)
+    assert isinstance(item["userId"], int)
+    assert isinstance(item["title"], str)
+    assert isinstance(item["body"], str)

@@ -37,3 +37,8 @@
 - Hardcoded exact title/content from live public API can change and make assertions brittle.
 - Overly strict body equality on endpoints with mock behavior can fail unexpectedly.
 - More stable pattern: assert required keys, types, and core behavior instead of fragile full-response matching.
+
+## Schema Assertion Notes
+- `isinstance()` is used to verify response field data types (for example `id` is `int`, `title` is `str`, `completed` is `bool`).
+- Type checks improve API contract confidence beyond just checking status code and key existence.
+- If `assert_todo_schema()` already calls `assert_todo_keys()`, tests do not need to call `assert_todo_keys()` again (avoid duplicate assertions).

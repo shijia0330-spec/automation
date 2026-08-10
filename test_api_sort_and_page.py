@@ -1,12 +1,14 @@
 import pytest
 
 from utils.api_client import get_posts, assert_ok_list
+from utils.api_client import assert_post_schema
 
 @pytest.mark.smoke
 def test_posts_sorted_desc_limit_5():
     response = get_posts({"_sort": "id", "_order": "desc", "_limit": 5})
-    data = assert_ok_list(response)
-
+    data = assert_ok_list(response) # assert the response is a list
+    for item in data:
+        assert_post_schema(item)
     assert len(data) == 5
 
     ids = [item["id"] for item in data]
@@ -40,7 +42,8 @@ def test_invalid_sort_field_behavior():
 def test_posts_sorted_asc_limit_3():
     response = get_posts({"_sort": "id", "_order": "asc", "_limit": 3})
     data = assert_ok_list(response)
-
+    for item in data:
+        assert_post_schema(item)
     assert len(data) == 3 # check if the data has 3 items
     ids = [item["id"] for item in data] # get the ids from the data
     assert ids == sorted(ids) # check if the ids are sorted in ascending order
