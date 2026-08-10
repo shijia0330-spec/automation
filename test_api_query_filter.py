@@ -1,5 +1,5 @@
 import pytest
-
+from utils.api_client import assert_schema_list, assert_post_schema
 from utils.api_client import get_posts, assert_ok_list
 
 
@@ -8,6 +8,7 @@ def test_api_query_string_title_like():
     keyword = "eum"
     response = get_posts({"title_like": keyword})
     data = assert_ok_list(response)
+    assert_schema_list(data, assert_post_schema)
 
     assert len(data) > 0
     assert all(keyword.lower() in item["title"].lower() for item in data)
@@ -53,3 +54,12 @@ def test_api_query_filter_title_like_invalid_value():
     response = get_posts({"title_like":"no_match_20260730_xyz123"})  
     data = assert_ok_list(response) # assert the response is a list
     assert len(data) == 0 # assert the length of the data is 0
+
+
+@pytest.mark.smoke
+def test_posts_limit_2_schema():
+    response = get_posts({"_limit":2})
+    data = assert_ok_list(response)
+    assert_schema_list(data, assert_post_schema)
+    assert len(data) == 2
+    print(data)

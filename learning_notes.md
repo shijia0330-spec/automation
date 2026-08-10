@@ -42,3 +42,11 @@
 - `isinstance()` is used to verify response field data types (for example `id` is `int`, `title` is `str`, `completed` is `bool`).
 - Type checks improve API contract confidence beyond just checking status code and key existence.
 - If `assert_todo_schema()` already calls `assert_todo_keys()`, tests do not need to call `assert_todo_keys()` again (avoid duplicate assertions).
+- Choose schema by endpoint resource:
+  - `/todos` -> `assert_todo_schema` (expects `completed`)
+  - `/posts` -> `assert_post_schema` (expects `body`)
+- I learned the difference between single-item and list validation:
+  - Single item: `assert_post_schema(item)` or `assert_todo_schema(item)`
+  - List of items: `assert_schema_list(data, assert_post_schema)` (it loops through list and validates each item)
+- _limit vs limit
+- list schema helper usage
