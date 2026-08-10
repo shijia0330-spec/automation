@@ -2,6 +2,7 @@ import pytest
 
 from api_client.todos_client import get_todos
 from utils.api_client import assert_ok_list
+from utils.api_client import assert_todo_schema
 
 
 
@@ -17,6 +18,8 @@ def test_filter_completed_true():
     # 6) Assert every item has completed is True
     response = get_todos({"completed": "true"})
     data = assert_ok_list(response)
+    for item in data:
+        assert_todo_schema(item)
 
 
     assert len(data) > 0
@@ -28,7 +31,8 @@ def test_filter_by_user_id():
 
     response = get_todos({"userId": 1})
     data = assert_ok_list(response)
-
+    for item in data:
+        assert_todo_schema(item)
     assert len(data) > 0
     assert all(item["userId"] == 1 for item in data)
 
