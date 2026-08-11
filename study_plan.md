@@ -101,7 +101,7 @@
 ### Session B - Consolidation
 - [x] Run full suite (`pytest -q test_api_*.py`) after helper refactor
 - [x] Record "before vs after" helper refactor notes in `learning_notes.md`
-- [ ] Final commit and CI green check for this advanced validation track
+- [x] Final commit and CI green check for this advanced validation track
 
 ## Useful Commands
 - Run one file: `pytest -q test_api_crud.py`

@@ -1,7 +1,14 @@
+
+import os
 from api_client.base_client import ApiClient
 
-client = ApiClient("https://jsonplaceholder.typicode.com")
 
+BASE_URL = os.getenv(
+    "API_BASE_URL", # "API_BASE_URL" is the environment variable that contains the base URL of the API
+    "https://jsonplaceholder.typicode.com", # default to jsonplaceholder if not set
+)
+
+client = ApiClient(BASE_URL)
 
 def get_todos(params=None): # params is a dictionary of query parameters
     return client.get("/todos", params=params)

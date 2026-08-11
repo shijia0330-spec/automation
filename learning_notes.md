@@ -57,3 +57,18 @@
 - Before: each test manually looped through response items.
 - After: assert_schema_list() reuses one validation pattern.
 - Benefit: less duplicate code and errors show the failed item index.
+
+## Response Header Validation
+- `Content-Type` identifies the response format, such as `application/json`.
+- `_limit=1` reduces the response size; it does not validate the JSON format.
+- `charset=utf-8` describes the text encoding used by the response.
+
+## Response Time Validation
+- `response.elapsed.total_seconds()` measures the API request duration in seconds.
+- A real response-time limit should come from an SLA or an agreed team requirement.
+- The current five-second limit is only a learning threshold.
+
+## Environment Configuration
+- `os.getenv("API_BASE_URL", default_url)` reads the base URL from an environment variable and uses the default URL when the variable is missing.
+- Run tests against an environment with `API_BASE_URL="https://real-environment-url.com" pytest -q`.
+- Every API client must use the configurable base URL before the full suite can switch environments consistently.
