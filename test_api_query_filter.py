@@ -1,4 +1,5 @@
 import pytest
+from requests.api import post
 from utils.api_client import assert_schema_list, assert_post_schema
 from utils.api_client import get_posts, assert_ok_list
 
@@ -63,3 +64,31 @@ def test_posts_limit_2_schema():
     assert_schema_list(data, assert_post_schema)
     assert len(data) == 2
     print(data)
+
+def test_schema_error_shows_failed_index_1():
+    posts = [
+        {"id": 1, "userId": 1, "title": "Valid", "body": "Valid"},
+        {"id": "wrong", "userId": 1, "title": "Invalid", "body": "Invalid"},
+    ]
+
+    with pytest.raises(
+        AssertionError,
+        match="Schema validation failed at index 1",
+    ) as error:
+        assert_schema_list(posts, assert_post_schema)
+
+    print(error.value)
+
+def test_schema_error_shows_failed_index_2():
+    posts = [
+        {"id": 1, "userId": 1, "title": "Valid", "body": "Valid"},
+        {"id": 2, "userId": 1, "title": "Invalid", "body": "Valid"},
+        {"id": 3, "userId": 1, "title": "Valid", "body": 123},
+    ]
+
+    with pytest.raises(
+    AssertionError,
+    match="Schema validation failed at index 2"
+   ) as error:
+        assert_schema_list(posts, assert_post_schema)
+    print(error.value)

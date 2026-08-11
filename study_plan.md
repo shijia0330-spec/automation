@@ -96,11 +96,11 @@
 - [x] Apply post schema checks in sorting/query tests
 - [x] Add reusable list validator (`assert_schema_list(data, schema_assertion)`)
 - [x] Replace duplicated schema loops with list validator helper
-- [ ] Add clear custom assertion messages for faster debugging
+- [x] Add clear custom assertion messages for faster debugging
 
 ### Session B - Consolidation
-- [ ] Run full suite (`pytest -q test_api_*.py`) after helper refactor
-- [ ] Record "before vs after" helper refactor notes in `learning_notes.md`
+- [x] Run full suite (`pytest -q test_api_*.py`) after helper refactor
+- [x] Record "before vs after" helper refactor notes in `learning_notes.md`
 - [ ] Final commit and CI green check for this advanced validation track
 
 ## Useful Commands

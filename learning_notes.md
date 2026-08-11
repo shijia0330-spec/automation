@@ -50,3 +50,10 @@
   - List of items: `assert_schema_list(data, assert_post_schema)` (it loops through list and validates each item)
 - _limit vs limit
 - list schema helper usage
+- Python list indexes start at `0`: the first post is `posts[0]`, and the second post is `posts[1]`.
+- `posts[0]["id"]` accesses the first post's ID.
+- `pytest.raises(AssertionError, match="...")` verifies that code raises the expected error with a useful message.
+- A schema failure at index `1` means the second item in the list failed validation.
+- Before: each test manually looped through response items.
+- After: assert_schema_list() reuses one validation pattern.
+- Benefit: less duplicate code and errors show the failed item index.
