@@ -72,3 +72,10 @@
 - `os.getenv("API_BASE_URL", default_url)` reads the base URL from an environment variable and uses the default URL when the variable is missing.
 - Run tests against an environment with `API_BASE_URL="https://real-environment-url.com" pytest -q`.
 - Every API client must use the configurable base URL before the full suite can switch environments consistently.
+
+## API Authentication
+- Login uses `POST` and returns an access token.
+- Protected endpoints use the `Authorization: Bearer <token>` header.
+- Missing or invalid tokens should return `401 Unauthorized`.
+- Prefer stable status codes and documented error codes over undocumented exact message text.
+- Never print or expose real production access and refresh tokens.
