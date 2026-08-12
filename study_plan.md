@@ -103,6 +103,95 @@
 - [x] Record "before vs after" helper refactor notes in `learning_notes.md`
 - [x] Final commit and CI green check for this advanced validation track
 
+## Next Track - API Reliability and Security
+
+### Session C - Headers, Timing, and Environments
+- [x] Validate JSON content type and UTF-8 response encoding
+- [x] Add a basic response-time threshold check
+- [x] Configure API base URLs with environment variables
+- [x] Run the full suite and confirm CI is green
+
+### Session D - Authentication
+- [x] Validate login returns a non-empty access token
+- [x] Use a Bearer token to access the current-user endpoint
+- [x] Test missing and invalid token responses
+- [x] Validate authentication error messages are present
+- [x] Record authentication lessons and confirm CI is green
+
+### Session E - Multi-API Dependency Workflows
+- [x] Create a fixture that logs in and returns an access token
+- [x] Reuse the token fixture in protected endpoint tests
+- [x] Practice a login -> authenticated request workflow
+- [x] Keep dependent setup failures clear and isolated
+- [ ] Run the full suite, update notes, and confirm CI is green
+
+## Future Track - Intermediate API Automation
+
+### Session F - Advanced Authentication and Secrets
+- [ ] Test token refresh and expiration behavior
+- [ ] Test role-based authorization and forbidden actions
+- [ ] Review logout and token-revocation behavior
+- [ ] Store credentials and tokens securely outside source code
+
+### Session G - Mocking and Resilience
+- [ ] Mock successful and failed API responses
+- [ ] Simulate timeouts, connection errors, and invalid JSON
+- [ ] Test `4xx` and `5xx` error-handling behavior
+- [ ] Learn when retries are safe and when they are risky
+
+### Session H - Contracts and Test Data
+- [ ] Validate responses with JSON Schema or OpenAPI
+- [ ] Create reusable test-data builders
+- [ ] Add setup and cleanup for created test records
+- [ ] Keep tests independent and deterministic
+
+### Session I - Reporting and Framework Quality
+- [ ] Generate JUnit or HTML test reports
+- [ ] Add useful logging without exposing secrets
+- [ ] Organize configuration, clients, fixtures, helpers, and tests
+- [ ] Run suitable tests in parallel
+
+### Session J - Performance and Final Project
+- [ ] Learn basic load and performance testing
+- [ ] Measure averages and percentiles such as p95
+- [ ] Build one complete portfolio API automation project
+- [ ] Run the final suite in CI and document the framework
+
+## Parallel Track - Playwright with Python
+
+Start this track after completing API Session E. Continue one intermediate API session each week while learning UI automation.
+
+### Playwright Week 1 - Browser Basics
+- [ ] Install Playwright and its browsers
+- [ ] Open a page and understand browser, context, and page
+- [ ] Practice stable locators
+- [ ] Click, fill, select, and submit
+- [ ] Add basic UI assertions
+
+### Playwright Week 2 - Reliable UI Tests
+- [ ] Learn auto-waiting and avoid fixed sleeps
+- [ ] Test forms, navigation, dialogs, and new tabs
+- [ ] Use pytest fixtures for browser setup
+- [ ] Capture screenshots and traces for failures
+
+### Playwright Week 3 - Framework Structure
+- [ ] Create Page Object Model classes
+- [ ] Separate test data, page actions, and assertions
+- [ ] Reuse login/setup state safely
+- [ ] Add positive and negative UI scenarios
+
+### Playwright Week 4 - CI and Portfolio
+- [ ] Run tests across Chromium, Firefox, and WebKit
+- [ ] Add Playwright tests and artifacts to CI
+- [ ] Create one end-to-end business workflow
+- [ ] Document commands, structure, and debugging steps
+
+### Balanced Weekly Schedule
+- [ ] 3 days: Playwright with Python
+- [ ] 2 days: intermediate API automation
+- [ ] 1 day: review, debugging, and project practice
+- [ ] 1 day: rest
+
 ## Useful Commands
 - Run one file: `pytest -q test_api_crud.py`
 - Collect only: `pytest --collect-only -q test_api_*.py`

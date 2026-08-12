@@ -10,6 +10,27 @@ AUTH_PASSWORD = os.getenv("AUTH_PASSWORD", "emilyspass")
 TIMEOUT = 10
 
 
+@pytest.fixture(scope="module")
+def access_token():
+    response = requests.post(
+        f"{AUTH_BASE_URL}/auth/login",
+        json={
+            "username": AUTH_USERNAME,
+            "password": AUTH_PASSWORD,
+        },
+        timeout=TIMEOUT,
+    )
+    assert response.status_code == 200, (
+        f"Fixture login failed with status {response.status_code}. "
+        f"Body: {response.text}"
+    )
+
+    token = response.json()["accessToken"]
+    assert token, "Expected fixture login to return an access token"
+    print(f"Fixture token type: {type(token).__name__}")
+    return token
+
+
 @pytest.mark.smoke
 def test_login_returns_access_token():
     response = requests.post(
@@ -32,21 +53,7 @@ def test_login_returns_access_token():
 
 
 @pytest.mark.smoke
-def test_access_token_returns_current_user():
-    login_response = requests.post(
-        f"{AUTH_BASE_URL}/auth/login",
-        json={
-            "username": AUTH_USERNAME,
-            "password": AUTH_PASSWORD,
-        },
-        timeout=TIMEOUT,
-    )
-    assert login_response.status_code == 200
-    print(f"Login status: {login_response.status_code}")
-
-    access_token = login_response.json()["accessToken"]
-    print(f"Token type: {type(access_token).__name__}")
-
+def test_access_token_returns_current_user(access_token):
     user_response = requests.get(
         f"{AUTH_BASE_URL}/auth/me",
         headers={"Authorization": f"Bearer {access_token}"},
@@ -102,3 +109,17 @@ def test_empty_error_message_is_rejected():
 
     assert isinstance(message, str)
     assert message.strip(), "Expected a non-empty error message"
+
+def test_access_token_returns_user_id(access_token):
+    response = requests.get(
+        f"{AUTH_BASE_URL}/auth/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+        timeout=TIMEOUT,
+    )
+    data = response.json()
+    assert response.status_code == 200, (
+        f"Expected authenticated status 200, got {response.status_code}. "
+        f"Body: {response.text}"
+    )
+    data = response.json()
+    assert isinstance(data.get("id"), int) 

@@ -79,3 +79,10 @@
 - Missing or invalid tokens should return `401 Unauthorized`.
 - Prefer stable status codes and documented error codes over undocumented exact message text.
 - Never print or expose real production access and refresh tokens.
+
+## Multi-API Fixture Workflows
+- A pytest fixture can log in and return an access token for dependent tests.
+- Tests receive fixture data by naming the fixture as a function parameter.
+- `scope="module"` creates the fixture once per test file and reuses its value.
+- If fixture setup fails, dependent tests show setup errors instead of misleading assertion failures.
+- Temporary environment-variable overrides are useful for controlled troubleshooting.
